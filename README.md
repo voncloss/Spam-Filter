@@ -20,11 +20,11 @@ time_t last = time(&last);
 time_t current;
 char *ip;
 
-if(filter == nullptr)
+if(filter == null)
     // Handle allocation failure
 while(FCGI_Accept()) {
     ip = getenv("REMOTE-ADDR");
-    if(ip == nullptr)
+    if(ip == null)
         FCGI_End();
     // If sufficient time has passed, check each node in the filter for deletion
     if(time(current) - last > filter->time) {
@@ -32,10 +32,10 @@ while(FCGI_Accept()) {
         last = current;
     }
     // If an entry was found, close the connection
-    if(SF_Find(ip, filter) != nullptr)
+    if(SF_Find(ip, filter) != null)
         FCGI_End();
     // If an entry wasn't found, add the ip address to the filter
-    if(SF_Insert(id, 0, filter) == nullptr) {
+    if(SF_Insert(id, 0, filter) == null) {
         // Handle allocation failure
     }
     // Do something with the received data
