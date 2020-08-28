@@ -22,20 +22,20 @@ char *ip;
 
 if(filter == null)
     // Handle allocation failure
-while(FCGI_Accept()) {
-    ip = getenv("REMOTE-ADDR");
+while(FCGI_Accept() >= 0) {
+    ip = getenv("REMOTE_ADDR");
     if(ip == null)
-        FCGI_End();
+        FCGI_Finish();
     // If sufficient time has passed, check each node in the filter for deletion
-    if(time(current) - last > filter->time) {
+    if(time(&current) - last > filter->time) {
         SF_Delete(filter, current);
         last = current;
     }
     // If an entry was found, close the connection
     if(SF_Find(ip, filter) != null)
-        FCGI_End();
+        FCGI_Finish();
     // If an entry wasn't found, add the ip address to the filter
-    if(SF_Insert(id, 0, filter) == null) {
+    if(SF_Insert(ip, 0, filter) == null) {
         // Handle allocation failure
     }
     // Do something with the received data
