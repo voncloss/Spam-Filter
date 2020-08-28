@@ -1,7 +1,17 @@
 # Spam-Filter
-A small spam filter library written in C. It can also be used to verify data by utilizing the SpamFilterNode::value member.
+A small spam filter library written in C.
 
-## Example usage in an FCGI application
+## Installation
+To build the library:
+```
+$ make lib
+```
+To copy libsf.so to /usr/local/lib:
+```
+$ sudo make install
+```
+
+## Example usage in a FCGI application
 This application allows only one request from the same ip address every 5 minutes.
 ```
 ...

@@ -1,8 +1,11 @@
+/*
+	Spam filter
+*/
 
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#define nullptr NULL
+#define null NULL
 
 /*
     This struct represents a node in a SpamFilter. The nodes are placed
