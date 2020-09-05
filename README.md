@@ -13,8 +13,7 @@ $ sudo make install
 
 ## Example usage in a FCGI application
 This application allows only one request from the same ip address every 5 minutes.
-```
-...
+```c
 SpamFilter *filter = SF_AllocFilter(300); // Initialize a filter and set the SpamFilterNode lifetime to 5 minutes
 time_t last = time(&last);
 time_t current;
@@ -39,9 +38,7 @@ while(FCGI_Accept() >= 0) {
         // Handle allocation failure
     }
     // Do something with the received data
-    ...
 }
 
 SF_FreeFilter(filter);
-...
 ```
