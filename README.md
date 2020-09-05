@@ -11,7 +11,7 @@ To copy libsf.so to /usr/local/lib:
 $ sudo make install
 ```
 
-## Example usage in a FCGI application
+## Example usage in an FCGI application
 This application allows only one request from the same ip address every 5 minutes.
 ```c
 SpamFilter *filter = SF_AllocFilter(300); // Initialize a filter and set the SpamFilterNode lifetime to 5 minutes
