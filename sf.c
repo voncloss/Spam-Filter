@@ -112,7 +112,7 @@ unsigned int SF_Strcmp(const unsigned char *s1, const unsigned char *s2)
 {
     while(*s1 != '\0' && *s2 != '\0') {
         if(*s1 != *s2)
-        break;
+           break;
         s1++; s2++;
     }
     if(*s1 < *s2)
