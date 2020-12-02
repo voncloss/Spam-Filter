@@ -108,20 +108,35 @@ struct SpamFilterNode *SF_Insert(const char *id, long value, struct SpamFilter *
     return *pointer;
 }
 
+unsigned int SF_Strcmp(const unsigned char *s1, const unsigned char *s2)
+{
+	while(*s1 != '\0' && *s2 != '\0') {
+		if(*s1 != *s2)
+			break;
+		s1++; s2++;
+	}
+	if(*s1 < *s2)
+		return 0;
+	else if(*s1 > *s2)
+		return 2;
+	else
+		return 1;
+}
+
 struct SpamFilterNode *SF_Find(const char *id, struct SpamFilter *filter)
 {
     struct SpamFilterNode *node = filter->head;
-    int res;
+    unsigned int res;
 
     while(node != null) {
-        res = strcmp(id, node->id);
+        res = SF_Strcmp(id, node->id);
         switch(res) {
-            case -1:
+            case 0:
                 node = node->left;
                 break;
-            case 0:
-                return node;
             case 1:
+                return node;
+            case 2:
                 node = node->right;
                 break;
             default:
